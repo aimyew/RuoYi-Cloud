@@ -29,6 +29,7 @@
         <tobato.version>1.27.2</tobato.version>
         <kaptcha.version>2.3.2</kaptcha.version>
         <pagehelper.boot.version>1.4.3</pagehelper.boot.version>
+        <oshi.version>6.2.2</oshi.version>
         <druid.version>1.2.11</druid.version>
         <dynamic-ds.version>3.5.1</dynamic-ds.version>
         <commons.io.version>2.11.0</commons.io.version>
@@ -127,6 +128,13 @@
                 <version>${pagehelper.boot.version}</version>
             </dependency>
 
+            <!-- 获取系统信息 -->
+            <dependency>
+                <groupId>com.github.oshi</groupId>
+                <artifactId>oshi-core</artifactId>
+              <version>${oshi.version}</version>
+            </dependency>
+
             <!-- io常用工具类 -->
             <dependency>
                 <groupId>commons-io</groupId>
@@ -156,9 +164,9 @@
             </dependency>
 
             <!-- Collection 增强Java集合框架 -->
-            <dependency> 
-                <groupId>commons-collections</groupId> 
-                <artifactId>commons-collections</artifactId> 
+            <dependency>
+                <groupId>commons-collections</groupId>
+                <artifactId>commons-collections</artifactId>
                 <version>${commons-collections.version}</version>
             </dependency>
 
