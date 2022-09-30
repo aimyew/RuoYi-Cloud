@@ -1,7 +1,7 @@
 <template>
   <div class="register">
     <el-form ref="registerForm" :model="registerForm" :rules="registerRules" class="register-form">
-      <h3 class="title">若依后台管理系统</h3>
+      <h3 class="title">欢迎注册</h3>
       <el-form-item prop="username">
         <el-input v-model="registerForm.username" type="text" auto-complete="off" placeholder="账号">
           <svg-icon slot="prefix" icon-class="user" class="el-input__icon input-icon" />
@@ -151,23 +151,26 @@ export default {
   justify-content: center;
   align-items: center;
   height: 100%;
-  background-image: url("../assets/images/login-background.jpg");
+  background-image: url("../assets/images/grid_dotted.svg");
   background-size: cover;
 }
 .title {
   margin: 0px auto 30px auto;
   text-align: center;
   color: #707070;
+  font-size: 36px;
 }
 
 .register-form {
-  border-radius: 6px;
-  background: #ffffff;
+  border: solid #f8f8f8;
+  border-radius: 90px;
+  background: rgb(240 242 245 / 0.9);
   width: 400px;
   padding: 25px 25px 5px 25px;
   .el-input {
     height: 38px;
     input {
+      background: rgb(240 242 245 / 0.9);
       height: 38px;
     }
   }
