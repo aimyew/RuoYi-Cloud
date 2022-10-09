@@ -1,5 +1,5 @@
 - 1.deploy reference http://doc.ruoyi.vip/ruoyi-cloud/document/hjbs.html
-- 2.run proj : gateway > system > job > auth > file|gen > monitor
+- 2.run proj : (gateway|system|auth)(major) > job|file|gen|monitor
 - 3.run sentinel : java -Dserver.port=8718 -Dcsp.sentinel.dashboard.server=localhost:8718 -Dproject.name=sentinel-dashboard -Dcsp.sentinel.api.port=8719 -Dsentinel.dashboard.auth.username=sentinel -Dsentinel.dashboard.auth.password=sentinel -jar bin/sentinel-dashboard-1.8.5.jar
 
 <p align="center">
