@@ -13,14 +13,14 @@
 
     <groupId>com.ruoyi</groupId>
     <artifactId>ruoyi</artifactId>
-    <version>3.6.0</version>
+    <version>3.6.1</version>
 
     <name>ruoyi</name>
     <url>http://www.ruoyi.vip</url>
     <description>若依微服务系统</description>
 
     <properties>
-        <ruoyi.version>3.6.0</ruoyi.version>
+        <ruoyi.version>3.6.1</ruoyi.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
@@ -70,20 +70,6 @@
                 <version>${spring-cloud-alibaba.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
-            </dependency>
-
-            <!-- Alibaba Nacos 配置 -->
-            <dependency>
-                <groupId>com.alibaba.nacos</groupId>
-                <artifactId>nacos-client</artifactId>
-                <version>${alibaba.nacos.version}</version>
-            </dependency>
-
-            <!-- Alibaba Seata 配置 -->
-            <dependency>
-                <groupId>io.seata</groupId>
-                <artifactId>seata-spring-boot-starter</artifactId>
-                <version>${alibaba.seata.version}</version>
             </dependency>
 
             <!-- SpringBoot 依赖配置 -->
@@ -238,6 +224,13 @@
             <dependency>
                 <groupId>com.ruoyi</groupId>
                 <artifactId>ruoyi-common-datasource</artifactId>
+                <version>${ruoyi.version}</version>
+            </dependency>
+
+            <!-- 分布式事务 -->
+            <dependency>
+                <groupId>com.ruoyi</groupId>
+                <artifactId>ruoyi-common-seata</artifactId>
                 <version>${ruoyi.version}</version>
             </dependency>
 
