@@ -32,12 +32,13 @@ create table sys_dept (
 -- ----------------------------
 -- 初始化-部门表数据
 -- ----------------------------
-INSERT INTO `ry-cloud`.`sys_dept` VALUES (100, 0, '0', '卷宗', 0, NULL, NULL, NULL, '0', '0', 'admin', sysdate(), 'admin', NULL);
+INSERT INTO `ry-cloud`.`sys_dept` VALUES (100, 0, '0', '时代卷', 0, NULL, NULL, NULL, '0', '0', 'admin', sysdate(), 'admin', NULL);
 INSERT INTO `ry-cloud`.`sys_dept` VALUES (101, 100, '0,100', '石器时代', 1, NULL, NULL, NULL, '0', '0', 'admin', sysdate(), 'admin', NULL);
 INSERT INTO `ry-cloud`.`sys_dept` VALUES (102, 100, '0,100', '青铜时代', 2, NULL, NULL, NULL, '0', '0', 'admin', sysdate(), 'admin', NULL);
 INSERT INTO `ry-cloud`.`sys_dept` VALUES (103, 100, '0,100', '铁器时代', 3, NULL, NULL, NULL, '0', '0', 'admin', sysdate(), 'admin', NULL);
-INSERT INTO `ry-cloud`.`sys_dept` VALUES (104, 101, '0,100,101', '餐饮', 1, NULL, NULL, NULL, '0', '0', 'admin', sysdate(), 'admin', NULL);
-INSERT INTO `ry-cloud`.`sys_dept` VALUES (105, 101, '0,100,101', '医疗', 2, NULL, NULL, NULL, '0', '0', 'admin', sysdate(), 'admin', NULL);
+INSERT INTO `ry-cloud`.`sys_dept` VALUES (104, 101, '0,100,101', '狩猎部', 1, NULL, NULL, NULL, '0', '0', 'admin', sysdate(), 'admin', NULL);
+INSERT INTO `ry-cloud`.`sys_dept` VALUES (105, 101, '0,100,101', '警卫部', 2, NULL, NULL, NULL, '0', '0', 'admin', sysdate(), 'admin', NULL);
+
 
 
 -- ----------------------------
@@ -324,7 +325,7 @@ create table sys_role_dept (
 -- ----------------------------
 insert into sys_role_dept values ('2', '100');
 insert into sys_role_dept values ('2', '101');
-insert into sys_role_dept values ('2', '105');
+insert into sys_role_dept values ('2', '104');
 
 
 -- ----------------------------
@@ -341,8 +342,7 @@ create table sys_user_post
 -- ----------------------------
 -- 初始化-用户与岗位关联表数据
 -- ----------------------------
-insert into sys_user_post values ('1', '1');
-insert into sys_user_post values ('2', '2');
+insert into sys_user_post values ('2', '1');
 
 
 -- ----------------------------
