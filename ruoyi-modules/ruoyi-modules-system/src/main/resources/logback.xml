@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- scan:当此属性设置为 true 时 配置文档如果发生改变 将会被重新加载 默认值为 true -->
+<!-- scanPeriod:设置监测配置文档是否有修改的时间间隔 如果没有给出时间单位 默认单位是毫秒 当 scan 为 true 时 此属性生效 默认的时间间隔为 1 分钟 -->
+<!-- debug:当此属性设置为 true 时 将打印出 logback 内部日志信息 实时查看 logback 运行状态 默认值为 false -->
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+  <!-- 日志存放路径 -->
+  <property name="log.path" value="logs/ruoyi-system"/>
+  <!-- 日志输出格式 -->
+  <property name="log.pattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{20} - [%method,%line] - %msg%n"/>
+
+  <!-- 彩色 -->
+  <!-- 彩色 -->
+  <!-- 彩色日志依赖的渲染类 -->
+  <conversionRule conversionWord="clr" converterClass="org.springframework.boot.logging.logback.ColorConverter" />
+  <conversionRule conversionWord="wex" converterClass="org.springframework.boot.logging.logback.WhitespaceThrowableProxyConverter" />
+  <conversionRule conversionWord="wEx" converterClass="org.springframework.boot.logging.logback.ExtendedWhitespaceThrowableProxyConverter" />
+  <!-- 彩色日志格式 -->
+  <!--
+  1.指定日期格式: [%d{yyyy-MM-dd HH:mm:ss.SSS}]
+  2.指定日志级别最小宽度为 5 且右对齐: [-%5p]
+  3.指定线程右对齐且最大(超过时左被截掉)最小为15位: [%15.15t]
+  4.指定日志产生的位置 右对齐且最大(超过时左被截掉)最小为15位 [%-40.40logger{39}]
+  4.输出日志并换行 [%m%n] | [%msg%n]
+  -->
+  <property name="CONSOLE_LOG_PATTERN" value="${CONSOLE_LOG_PATTERN:-%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%logger){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}"/>
+  <!-- 彩色 -->
+  <!-- 彩色 -->
+
+  <!-- 控制台输出 -->
+  <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+    <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+      <level>DEBUG</level>
+    </filter>
+    <encoder>
+      <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+      <!-- 设置字符集 -->
+      <charset>UTF-8</charset>
+    </encoder>
+  </appender>
+
+  <!-- 系统日志输出 -->
+  <appender name="file_info" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${log.path}/info.log</file>
+    <!-- 循环政策：基于时间创建日志文件 -->
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <!-- 日志文件名格式 -->
+      <fileNamePattern>${log.path}/info.%d{yyyy-MM-dd}.log</fileNamePattern>
+      <!-- 日志最大的历史 60天 -->
+      <maxHistory>60</maxHistory>
+    </rollingPolicy>
+    <encoder>
+      <pattern>${log.pattern}</pattern>
+      <charset>UTF-8</charset>
+    </encoder>
+    <filter class="ch.qos.logback.classic.filter.LevelFilter">
+      <!-- 过滤的级别 -->
+      <level>INFO</level>
+      <!-- 匹配时的操作：接收（记录） -->
+      <onMatch>ACCEPT</onMatch>
+      <!-- 不匹配时的操作：拒绝（不记录） -->
+      <onMismatch>DENY</onMismatch>
+    </filter>
+  </appender>
+
+  <appender name="file_error" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${log.path}/error.log</file>
+    <!-- 循环政策：基于时间创建日志文件 -->
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <!-- 日志文件名格式 -->
+      <fileNamePattern>${log.path}/error.%d{yyyy-MM-dd}.log</fileNamePattern>
+      <!-- 日志最大的历史 60天 -->
+      <maxHistory>60</maxHistory>
+    </rollingPolicy>
+    <encoder>
+      <pattern>${log.pattern}</pattern>
+      <charset>UTF-8</charset>
+    </encoder>
+    <filter class="ch.qos.logback.classic.filter.LevelFilter">
+      <!-- 过滤的级别 -->
+      <level>ERROR</level>
+      <!-- 匹配时的操作：接收（记录） -->
+      <onMatch>ACCEPT</onMatch>
+      <!-- 不匹配时的操作：拒绝（不记录） -->
+      <onMismatch>DENY</onMismatch>
+    </filter>
+  </appender>
+
+  <!--
+  <logger> 用来设置某一个包或者具体的某一个类的日志打印级别 以及指定 <appender>
+  <logger> 仅有一个 name 属性 一个可选的 level 和一个可选的 addtivity 属性
+  name: 用来指定受此logger约束的某一个包或者具体的某一个类
+  level: 用来设置打印级别 大小写无关 TRACE, DEBUG, INFO, WARN, ERROR, ALL 和 OFF 还有一个特俗值 INHERITED 或者同义词 NULL 代表强制执行上级的级别 如果未设置此属性 那么当前 logger 将会继承上级的级别
+  addtivity: 是否向上级 logger 传递打印信息 默认是 true
+  -->
+  <!-- 系统模块日志级别控制 -->
+  <logger name="com.ruoyi">
+    <level value="INFO" />
+    <appender-ref ref="file_info"/>
+    <appender-ref ref="file_error"/>
+  </logger>
+  <!-- Spring 日志级别控制 -->
+  <logger name="org.springframework">
+    <level value="WARN" />
+    <appender-ref ref="file_info"/>
+    <appender-ref ref="file_error"/>
+  </logger>
+  <!-- nacos 日志级别控制 -->
+  <logger name="com.alibaba.nacos">
+    <level value="WARN" />
+    <appender-ref ref="file_info"/>
+    <appender-ref ref="file_error"/>
+  </logger>
+  <logger name="com.ruoyi.system.mapper">
+    <level value="DEBUG"/>
+    <appender-ref ref="file_info"/>
+    <appender-ref ref="file_error"/>
+  </logger>
+  <!-- mapper log print -->
+  <!--  <logger name="com.ruoyi.system.mapper" level="debug"/>-->
+
+  <!--
+  root 节点是必选节点 用来指定通用的日志输出级别 只有一个 level 属性
+  level: 用来设置打印级别 大小写无关 TRACE, DEBUG, INFO, WARN, ERROR, ALL 和 OFF 不能设置为 INHERITED 或者同义词 NULL 默认是 DEBUG
+  可以包含零个或多个元素 标识这个 appender 将会添加到这个 logger
+  -->
+  <!-- 系统操作日志 -->
+  <root level="INFO">
+    <appender-ref ref="console"/>
+<!--    <appender-ref ref="file_info"/>-->
+<!--    <appender-ref ref="file_error"/>-->
+  </root>
+</configuration>
