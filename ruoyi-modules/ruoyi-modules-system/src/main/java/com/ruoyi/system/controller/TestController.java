@@ -35,9 +35,6 @@ public class TestController extends BaseController {
     @GetMapping(value = "/validator")
     public R<?> validator() {
         SysMenu sysMenu = new SysMenu();
-        System.out.println(1);
-        System.out.println(1);
-        System.out.println(1);
         BeanValidators.validateWithException(validator, sysMenu);
         return R.ok();
     }

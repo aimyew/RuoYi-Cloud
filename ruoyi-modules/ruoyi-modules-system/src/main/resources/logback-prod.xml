@@ -8,36 +8,6 @@
   <!-- 日志输出格式 -->
   <property name="log.pattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{20} - [%method,%line] - %msg%n"/>
 
-  <!-- 彩色 -->
-  <!-- 彩色 -->
-  <!-- 彩色日志依赖的渲染类 -->
-  <conversionRule conversionWord="clr" converterClass="org.springframework.boot.logging.logback.ColorConverter" />
-  <conversionRule conversionWord="wex" converterClass="org.springframework.boot.logging.logback.WhitespaceThrowableProxyConverter" />
-  <conversionRule conversionWord="wEx" converterClass="org.springframework.boot.logging.logback.ExtendedWhitespaceThrowableProxyConverter" />
-  <!-- 彩色日志格式 -->
-  <!--
-  1.指定日期格式: [%d{yyyy-MM-dd HH:mm:ss.SSS}]
-  2.指定日志级别最小宽度为 5 且右对齐: [-%5p]
-  3.指定线程右对齐且最大(超过时左被截掉)最小为15位: [%15.15t]
-  4.指定日志产生的位置 右对齐且最大(超过时左被截掉)最小为15位 [%-40.40logger{39}]
-  4.输出日志并换行 [%m%n] | [%msg%n]
-  -->
-  <property name="CONSOLE_LOG_PATTERN" value="${CONSOLE_LOG_PATTERN:-%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%logger){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}"/>
-  <!-- 彩色 -->
-  <!-- 彩色 -->
-
-  <!-- 控制台输出 -->
-  <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
-    <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-      <level>DEBUG</level>
-    </filter>
-    <encoder>
-      <pattern>${CONSOLE_LOG_PATTERN}</pattern>
-      <!-- 设置字符集 -->
-      <charset>UTF-8</charset>
-    </encoder>
-  </appender>
-
   <!-- 系统日志输出 -->
   <appender name="file_info" class="ch.qos.logback.core.rolling.RollingFileAppender">
     <file>${log.path}/info.log</file>
@@ -104,8 +74,13 @@
     <appender-ref ref="file_info"/>
     <appender-ref ref="file_error"/>
   </logger>
+  <logger name="org.apache">
+    <level value="INFO" />
+    <appender-ref ref="file_info"/>
+    <appender-ref ref="file_error"/>
+  </logger>
   <!-- nacos 日志级别控制 -->
-  <logger name="com.alibaba.nacos">
+  <logger name="com.alibaba.nacos" addtivity="false">
     <level value="WARN" />
     <appender-ref ref="file_info"/>
     <appender-ref ref="file_error"/>
@@ -124,9 +99,17 @@
   可以包含零个或多个元素 标识这个 appender 将会添加到这个 logger
   -->
   <!-- 系统操作日志 -->
-  <root level="INFO">
-    <appender-ref ref="console"/>
+<!--  <root level="INFO">-->
 <!--    <appender-ref ref="file_info"/>-->
 <!--    <appender-ref ref="file_error"/>-->
-  </root>
+<!--  </root>-->
+
+  <!-- 本地环境输出至控制台 -->
+  <!-- 如果使用了 springProfile, 需要将logback.xml名称改为logback-spring.xml-->
+  <springProfile name="prod">
+    <root level="INFO">
+      <appender-ref ref="file_info"/>
+      <appender-ref ref="file_error"/>
+    </root>
+  </springProfile>
 </configuration>
