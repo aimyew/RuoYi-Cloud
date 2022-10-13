@@ -1,26 +1,26 @@
 package com.ruoyi.gateway.config;
 
 import java.util.Properties;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 import com.google.code.kaptcha.util.Config;
+
 import static com.google.code.kaptcha.Constants.*;
 
 /**
  * 验证码配置
- * 
+ *
  * @author ruoyi
  */
 @Configuration
-public class CaptchaConfig
-{
+public class CaptchaConfig {
     @Bean(name = "captchaProducer")
-    public DefaultKaptcha getKaptchaBean()
-    {
+    public DefaultKaptcha getKaptchaBean() {
         DefaultKaptcha defaultKaptcha = new DefaultKaptcha();
         Properties properties = new Properties();
-        // 是否有边框 默认为true 我们可以自己设置yes，no
+        // 是否有边框 默认为true 我们可以自己设置yes no
         properties.setProperty(KAPTCHA_BORDER, "yes");
         // 验证码文本字符颜色 默认为Color.BLACK
         properties.setProperty(KAPTCHA_TEXTPRODUCER_FONT_COLOR, "black");
@@ -42,13 +42,12 @@ public class CaptchaConfig
         defaultKaptcha.setConfig(config);
         return defaultKaptcha;
     }
-    
+
     @Bean(name = "captchaProducerMath")
-    public DefaultKaptcha getKaptchaBeanMath()
-    {
+    public DefaultKaptcha getKaptchaBeanMath() {
         DefaultKaptcha defaultKaptcha = new DefaultKaptcha();
         Properties properties = new Properties();
-        // 是否有边框 默认为true 我们可以自己设置yes，no
+        // 是否有边框 默认为true 我们可以自己设置yes no
         properties.setProperty(KAPTCHA_BORDER, "yes");
         // 边框颜色 默认为Color.BLACK
         properties.setProperty(KAPTCHA_BORDER_COLOR, "105,179,90");

@@ -80,6 +80,7 @@ public class ValidateCodeServiceImpl implements ValidateCodeService {
             return AjaxResult.error(e.getMessage());
         }
 
+        ajax.put("codeVal", code);
         ajax.put("uuid", uuid);
         ajax.put("img", Base64.encode(os.toByteArray()));
         return ajax;
