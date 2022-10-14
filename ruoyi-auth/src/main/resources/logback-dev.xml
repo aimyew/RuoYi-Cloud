@@ -54,10 +54,10 @@
   </logger>
 
   <!-- 系统操作日志 -->
-<!--  <root level="INFO">-->
-<!--    <appender-ref ref="file_info"/>-->
-<!--    <appender-ref ref="file_error"/>-->
-<!--  </root>-->
+  <!--  <root level="INFO">-->
+  <!--    <appender-ref ref="file_info"/>-->
+  <!--    <appender-ref ref="file_error"/>-->
+  <!--  </root>-->
 
   <!-- 本地环境输出至控制台 -->
   <!-- 如果使用了 springProfile, 需要将logback.xml名称改为logback-spring.xml-->

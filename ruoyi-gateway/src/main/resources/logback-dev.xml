@@ -33,31 +33,24 @@
     </encoder>
   </appender>
 
-  <!-- 系统模块日志级别控制 -->
+  <!-- 系统模块日志级别控制  -->
   <logger name="com.ruoyi">
-    <level value="INFO" />
+    <level value="INFO"/>
   </logger>
   <!-- Spring 日志级别控制 -->
   <logger name="org.springframework">
-    <level value="WARN" />
-  </logger>
-  <logger name="org.apache">
-    <level value="INFO" />
+    <level value="WARN"/>
   </logger>
   <!-- nacos 日志级别控制 -->
   <logger name="com.alibaba.nacos" addtivity="false">
     <level value="WARN" />
   </logger>
-  <!-- mapper log print -->
-  <logger name="com.ruoyi.system.mapper">
-    <level value="DEBUG"/>
-  </logger>
 
   <!-- 系统操作日志 -->
-<!--  <root level="INFO">-->
-<!--    <appender-ref ref="file_info"/>-->
-<!--    <appender-ref ref="file_error"/>-->
-<!--  </root>-->
+  <!--  <root level="INFO">-->
+  <!--    <appender-ref ref="file_info"/>-->
+  <!--    <appender-ref ref="file_error"/>-->
+  <!--  </root>-->
 
   <!-- 本地环境输出至控制台 -->
   <!-- 如果使用了 springProfile, 需要将logback.xml名称改为logback-spring.xml-->
