@@ -1,13 +1,14 @@
 <template>
   <div class="login">
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form">
-      <h3 class="title">账号登录</h3>
+      <lang-select class="set-language" style="float: right"/>
+      <h3 class="title">{{ $t('login.title') }}</h3>
       <el-form-item prop="username">
         <el-input
           v-model="loginForm.username"
           type="text"
           auto-complete="off"
-          placeholder="账号"
+          :placeholder="$t('login.username')"
         >
           <svg-icon slot="prefix" icon-class="user" class="el-input__icon input-icon" />
         </el-input>
@@ -17,7 +18,7 @@
           v-model="loginForm.password"
           type="password"
           auto-complete="off"
-          placeholder="密码"
+          :placeholder="$t('login.password')"
           @keyup.enter.native="handleLogin"
         >
           <svg-icon slot="prefix" icon-class="password" class="el-input__icon input-icon" />
@@ -46,7 +47,7 @@
           style="width:100%;"
           @click.native.prevent="handleLogin"
         >
-          <span v-if="!loading">登 录</span>
+          <span v-if="!loading">{{ $t('login.logIn') }}</span>
           <span v-else>登 录 中...</span>
         </el-button>
         <div style="float: right;" v-if="register">
@@ -62,12 +63,14 @@
 </template>
 
 <script>
+import LangSelect from '@/components/LangSelect'
 import { getCodeImg } from "@/api/login";
 import Cookies from "js-cookie";
 import { encrypt, decrypt } from '@/utils/jsencrypt'
 
 export default {
   name: "Login",
+  components: { LangSelect },
   data() {
     return {
       codeUrl: "",

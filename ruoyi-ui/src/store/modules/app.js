@@ -7,7 +7,8 @@ const state = {
     hide: false
   },
   device: 'desktop',
-  size: Cookies.get('size') || 'medium'
+  size: Cookies.get('size') || 'medium',
+  language: Cookies.get('language') || 'en'
 }
 
 const mutations = {
@@ -37,6 +38,10 @@ const mutations = {
   },
   SET_SIDEBAR_HIDE: (state, status) => {
     state.sidebar.hide = status
+  },
+  SET_LANGUAGE: (state, language) => {
+    state.language = language
+    Cookies.set('language', language)
   }
 }
 
@@ -55,6 +60,9 @@ const actions = {
   },
   toggleSideBarHide({ commit }, status) {
     commit('SET_SIDEBAR_HIDE', status)
+  },
+  setLanguage({ commit }, language) {
+    commit('SET_LANGUAGE', language)
   }
 }
 

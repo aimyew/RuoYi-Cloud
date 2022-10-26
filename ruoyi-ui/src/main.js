@@ -12,6 +12,7 @@ import store from './store'
 import router from './router'
 import directive from './directive' // directive
 import plugins from './plugins' // plugins
+import i18n from "./lang"; // 国际化
 import { download } from '@/utils/request'
 
 import './assets/icons' // icon
@@ -76,11 +77,17 @@ Vue.use(Element, {
   size: Cookies.get('size') || 'medium' // set element-ui default size
 })
 
+// use 添加 i18n
+Vue.use(Element, {
+  i18n: (key, value) => i18n.t(key, value)
+})
+
 Vue.config.productionTip = false
 
 new Vue({
   el: '#app',
   router,
   store,
+  i18n,
   render: h => h(App)
 })
