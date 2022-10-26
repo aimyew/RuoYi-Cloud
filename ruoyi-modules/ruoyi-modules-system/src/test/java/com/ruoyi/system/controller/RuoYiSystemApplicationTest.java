@@ -18,6 +18,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class RuoYiSystemApplicationTest {
     @Test
     public void baseTest() {
-        System.out.println("RuoYiSystemApplicationTest.baseTest()");
+        log.info("RuoYiSystemApplicationTest.baseTest()");
     }
 }

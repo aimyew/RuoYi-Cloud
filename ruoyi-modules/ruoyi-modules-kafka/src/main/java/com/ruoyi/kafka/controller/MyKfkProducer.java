@@ -1,5 +1,6 @@
 package com.ruoyi.kafka.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
@@ -17,6 +18,7 @@ import java.util.concurrent.ExecutionException;
  * @date 2022/10/17 16:23
  */
 @RestController
+@Slf4j
 public class MyKfkProducer {
     private final static String TOPIC_NAME = "default.specific.orderDetail"; // topic 的名称
 
@@ -28,7 +30,7 @@ public class MyKfkProducer {
         // 同步发送
         ListenableFuture<SendResult<String, String>> future = kafkaTemplate.send(TOPIC_NAME, "send_key_1", "send_value_1");
         SendResult<String, String> stringStringSendResult = future.get();
-        System.out.println("send1 stringStringSendResult >> " + stringStringSendResult);
+        log.info("send1 stringStringSendResult >> " + stringStringSendResult);
     }
 
     @RequestMapping("/send2")
@@ -43,9 +45,9 @@ public class MyKfkProducer {
 
             @Override
             public void onSuccess(SendResult<String, String> result) {
-                System.out.println("send2 " + result.getProducerRecord());
-                System.out.println("send2 " + result.getRecordMetadata());
-                System.out.println("send2 offset " + result.getRecordMetadata().offset());
+                log.info("send2 " + result.getProducerRecord());
+                log.info("send2 " + result.getRecordMetadata());
+                log.info("send2 offset " + result.getRecordMetadata().offset());
             }
         });
     }

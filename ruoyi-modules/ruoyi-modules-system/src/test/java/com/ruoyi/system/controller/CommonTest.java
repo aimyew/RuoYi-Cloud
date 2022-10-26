@@ -1,5 +1,6 @@
 package com.ruoyi.system.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -10,6 +11,7 @@ import org.junit.runners.JUnit4;
  * @date 2022/10/8 17:33
  */
 @RunWith(value = JUnit4.class)
+@Slf4j
 public class CommonTest {
 
     @Test
