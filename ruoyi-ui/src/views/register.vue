@@ -151,7 +151,7 @@ export default {
   justify-content: center;
   align-items: center;
   height: 100%;
-  background-image: url("../assets/images/grid_dotted.svg");
+  background-image: url("../assets/images/stardust.svg");
   background-size: cover;
 }
 .title {

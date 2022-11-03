@@ -3,7 +3,9 @@ export default {
     title: '账号登录',
     logIn: '登录',
     username: '账号',
-    password: '密码'
+    password: '密码',
+    code: '验证码',
+    rememberMe: '记住密码'
   },
   tagsView: {
     refresh: '刷新',
