@@ -67,8 +67,10 @@ public class ValidateCodeServiceImpl implements ValidateCodeService {
             code = capText.substring(capText.lastIndexOf("@") + 1);
             image = captchaProducerMath.createImage(capStr);
         } else if ("char".equals(captchaType)) {
-            capStr = code = captchaProducer.createText();
-            image = captchaProducer.createImage(capStr);
+            capStr = code = this.captchaProducer.createText();
+            image = this.captchaProducer.createImage(capStr);
+        } else {
+            throw new CaptchaException("验证码类型错误");
         }
 
         redisService.setCacheObject(verifyKey, code, Constants.CAPTCHA_EXPIRATION, TimeUnit.MINUTES);
