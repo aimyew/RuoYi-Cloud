@@ -1,6 +1,6 @@
 - 1.deploy reference http://doc.ruoyi.vip/ruoyi-cloud/document/hjbs.html
 - 2.preparing:
-  - run nacos (modify nacos-server-2.1.0\nacos\conf\application.properties >> Config Module Related Configurations)
+  - run nacos (download: https://github.com/alibaba/nacos/releases || modify nacos-server-2.1.0\nacos\conf\application.properties >> Config Module Related Configurations)
 ```properties
 spring.datasource.platform=mysql
 db.num=1
